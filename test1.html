@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>What Can JavaScript Do?</h1>
+
+<p>JavaScript can change HTML attributes.</p>
+
+<p>In this case JavaScript changes the src (source) attribute of an image.</p>
+
+<script>
+var amount = 0;
+var price = 65;
+
+function moneyEntered(valueCoin){
+	amount = amount + valueCoin;
+	document.getElementById('amount').innerHTML = amount;
+	if (amount >= price) {
+		amount = amount - price;
+		document.getElementById('vend').innerHTML = "Here you go";
+		document.getElementById('amount').innerHTML = amount;
+    }
+}
+</script>
+
+<button onclick="moneyEntered(100)">£1</button>
+<button onclick="moneyEntered(50)">50p</button>
+<button onclick="moneyEntered(20)">20p</button>
+<button onclick="moneyEntered(10)">10p</button>
+<button onclick="moneyEntered(5)">5p</button>
+
+<h1>Entered in pence</h1>
+<p id="amount">0</p>
+
+<p id="vend"></p>
+
+
+</body>
+</html>
