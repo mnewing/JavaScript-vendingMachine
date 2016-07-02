@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<body>
+
+<head>
+</head>
+<body onload="disableCoinButton(true);">
 
 <h1>What Can JavaScript Do?</h1>
 
@@ -8,32 +11,70 @@
 
 <p>In this case JavaScript changes the src (source) attribute of an image.</p>
 
-<script>
-var amount = 0;
-var price = 65;
+<button id="a1" onclick="itemSelected(65)">Apple, 65p</button>
+<button id="a2" onclick="itemSelected(50)">Banana, 50p</button>
+<button id="a3" onclick="itemSelected(70)">Pear, 70p</button>
+<button id="b1" onclick="itemSelected(95)">Mango, 95p</button>
+<button id="b2" onclick="itemSelected(115)">Grapes, &#8356;1.15</button>
+<button id="b3" onclick="itemSelected(45)">Orange, 45p</button>
+<br>
+<br>
 
-function moneyEntered(valueCoin){
-	amount = amount + valueCoin;
-	document.getElementById('amount').innerHTML = amount;
-	if (amount >= price) {
-		amount = amount - price;
-		document.getElementById('vend').innerHTML = "Here you go";
-		document.getElementById('amount').innerHTML = amount;
-    }
-}
-</script>
+<button id="coin100" onclick="moneyEntered(100)">&#8356;1</button>
+<button id="coin50" onclick="moneyEntered(50)">50p</button>
+<button id="coin20" onclick="moneyEntered(20)">20p</button>
+<button id="coin10" onclick="moneyEntered(10)">10p</button>
+<button id="coin5" onclick="moneyEntered(5)">5p</button>
 
-<button onclick="moneyEntered(100)">£1</button>
-<button onclick="moneyEntered(50)">50p</button>
-<button onclick="moneyEntered(20)">20p</button>
-<button onclick="moneyEntered(10)">10p</button>
-<button onclick="moneyEntered(5)">5p</button>
+<p id="status">Please select your choice </p>
 
 <h1>Entered in pence</h1>
 <p id="amount">0</p>
 
-<p id="vend"></p>
-
-
 </body>
+
+<footer>
+<script>
+var amount = 0;
+var price = 0;
+
+function disableCoinButton(disable){
+	document.getElementById('coin100').disabled = disable;
+	document.getElementById('coin50').disabled = disable;
+	document.getElementById('coin20').disabled = disable;
+	document.getElementById('coin10').disabled = disable;
+	document.getElementById('coin5').disabled = disable;
+}
+
+
+function disableSelectionButton(disable){
+	document.getElementById('a1').disabled = disable;
+	document.getElementById('a2').disabled = disable;
+	document.getElementById('a3').disabled = disable;
+	document.getElementById('b1').disabled = disable;
+	document.getElementById('b2').disabled = disable;
+	document.getElementById('b3').disabled = disable;
+}
+
+function itemSelected(itemPrice){
+	price = itemPrice;
+	document.getElementById('status').innerHTML = "Please enter " + price + "p";
+	disableCoinButton(false);
+	disableSelectionButton(true);
+}
+
+function moneyEntered(valueCoin){
+	amount = amount + valueCoin;
+	document.getElementById('amount').innerHTML = amount;
+	if (price > 0 && amount >= price) {
+		amount = amount - price;
+		document.getElementById('status').innerHTML = "Enjoy your fruit";
+		document.getElementById('amount').innerHTML = amount;
+		disableSelectionButton(false);
+		disableCoinButton(true);
+
+    }
+}
+</script>
+</footer>
 </html>
