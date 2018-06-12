@@ -1,1 +1,1 @@
-this is so Github will work!!!
+A simple example of using JavaScript.
